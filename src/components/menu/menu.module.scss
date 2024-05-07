@@ -1,0 +1,22 @@
+.menu {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  li {
+    float: left;
+    margin-left: 20px;
+    color: #7d7d82;
+    font-weight: bold;
+    font-size: 24px;
+    display: flex;
+    flex: 0 0 auto;
+    padding: 10px 20px;
+    white-space: nowrap;
+    &.active {
+      color: #0e968b;
+    }
+  }
+}
