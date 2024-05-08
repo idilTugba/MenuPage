@@ -1,22 +1,28 @@
-.menu {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  li {
-    float: left;
-    margin-left: 20px;
-    color: #7d7d82;
-    font-weight: bold;
-    font-size: 24px;
+.scrollableTabs {
+  display: flex;
+  flex-direction: column;
+  ul {
     display: flex;
-    flex: 0 0 auto;
-    padding: 10px 20px;
-    white-space: nowrap;
-    &.active {
-      color: #0e968b;
+    overflow-x: auto; /* Yatay kaydırma */
+    scrollbar-width: thin; /* Firefox için ince scrollbar */
+    -webkit-overflow-scrolling: touch; /* iOS için kaydırma */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    li {
+      float: left;
+      margin-left: 20px;
+      color: #7d7d82;
+      font-weight: bold;
+      font-size: 24px;
+      display: flex;
+      flex: 0 0 auto;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      white-space: nowrap;
+      &.active {
+        color: #0e968b;
+      }
     }
   }
 }

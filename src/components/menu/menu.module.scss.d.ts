@@ -1,1 +1,1 @@
-export const menu: string;
+export const scrollableTabs: string;

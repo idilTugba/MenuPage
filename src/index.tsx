@@ -3,11 +3,14 @@ import { createRoot } from "react-dom/client";
 
 import "./asset/styles/app.scss";
 import Home from "./pages/Home";
+import { MenuProvider } from "./context/MenuContext";
 
 function App() {
   return (
     <>
-      <Home />
+      <MenuProvider>
+        <Home />
+      </MenuProvider>
     </>
   );
 }

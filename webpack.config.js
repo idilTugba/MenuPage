@@ -1,6 +1,6 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
@@ -19,7 +19,7 @@ module.exports = {
     assetModuleFilename: 'images/[hash][ext][query]'  
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss']  
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss', '.css']  
   },
   module: {
     rules: [
@@ -45,15 +45,83 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: {
-                auto: true, 
+                auto: true,
                 localIdentName: '[name]__[local]___[hash:base64:5]',
-                exportLocalsConvention: 'camelCaseOnly'
-              }
-            }
+                exportLocalsConvention: 'camelCaseOnly',
+              },
+            },
           },
-          "sass-loader"
-        ]
+          'sass-loader',
+        ],
       },
+      // {
+      //   test: /\.scss$/i,
+      //   exclude: /\.module\.scss$/i,
+      //   use: [
+      //     {
+      //       loader: "style-loader",
+      //     },
+      //     {
+      //       loader: "css-loader",
+      //       options: {
+      //         importLoaders: 1,
+      //         modules: {
+      //           mode: "icss",
+      //           localIdentName: '[name]__[local]___[hash:base64:5]',
+      //           exportLocalsConvention: 'camelCaseOnly'
+      //         },
+      //       },
+      //     },
+      //     {
+      //       loader: "sass-loader",
+      //     },
+      //   ],
+      // },
+      // // --------
+      // // SCSS MODULES
+      // {
+      //   test: /\.module\.scss$/i,
+      //   use: [
+      //     {
+      //       loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+      //     },
+      //     {
+      //       loader: "css-loader",
+      //       options: {
+      //         importLoaders: 1,
+      //         modules: {
+      //           mode: "local",
+      //           localIdentName: '[name]__[local]___[hash:base64:5]',
+      //           exportLocalsConvention: 'camelCaseOnly'
+      //         },
+      //       },
+      //     },
+      //     {
+      //       loader: "sass-loader",
+      //     },
+      //   ],
+      // },
+      {
+        test: /\.(css)$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
+      },
+      // {
+      //   test: /\.module\.s?css$/,
+      //   use: [
+      //     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         modules: {
+      //           mode: 'local',
+      //           localIdentName: '[name]__[local]___[hash:base64:5]',
+      //           exportLocalsConvention: 'camelCaseOnly'
+      //         }
+      //       }
+      //     },
+      //     'sass-loader'
+      //   ]
+      // },
       {
         test: /\.svg$/,
         use: ['@svgr/webpack', 'url-loader'], 
@@ -85,7 +153,7 @@ module.exports = {
               ['imagemin-gifsicle', { interlaced: true, optimizationLevel: 3 }],
               ['imagemin-mozjpeg', { progressive: true, quality: 75 }], // Kalite değerini ayarlayabilirsiniz
               ['imagemin-pngquant', { quality: [0.6, 0.8] }], // Kalite aralığını ayarlayabilirsiniz
-              ['imagemin-svgo'],
+              // ['imagemin-svgo'],
               //lossly
 
               // Lossless optimization with custom option
