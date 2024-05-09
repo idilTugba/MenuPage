@@ -10,7 +10,7 @@ export interface menuListTypo {
 
 export const menuList: Array<menuListTypo> = [
   {
-    id: 12,
+    id: 1,
     name: "Izgara Somon Balığı",
     type: "Ana Yemek",
     img: "./src/asset/image/menu/somon.png",
@@ -19,7 +19,7 @@ export const menuList: Array<menuListTypo> = [
     popular: false,
   },
   {
-    id: 12,
+    id: 2,
     name: "Ispanaklı Börek",
     type: "Kahvaltı",
     img: "./src/asset/image/menu/somon.png",
@@ -28,7 +28,7 @@ export const menuList: Array<menuListTypo> = [
     popular: false,
   },
   {
-    id: 12,
+    id: 3,
     name: "Cheddar Tost",
     type: "Atıştırmalık",
     img: "./src/asset/image/menu/somon.png",
@@ -37,7 +37,7 @@ export const menuList: Array<menuListTypo> = [
     popular: true,
   },
   {
-    id: 12,
+    id: 4,
     name: "2li Hamburger Menu",
     type: "Ana Yemek",
     img: "./src/asset/image/menu/somon.png",
@@ -46,7 +46,7 @@ export const menuList: Array<menuListTypo> = [
     popular: false,
   },
   {
-    id: 12,
+    id: 5,
     name: "Mini Kahvaltı Menusü",
     type: "Kahvaltılık",
     img: "./src/asset/image/menu/somon.png",
@@ -55,7 +55,7 @@ export const menuList: Array<menuListTypo> = [
     popular: false,
   },
   {
-    id: 12,
+    id: 6,
     name: "Akdeniz Salata",
     type: "Salatalar",
     img: "./src/asset/image/menu/somon.png",
@@ -64,7 +64,7 @@ export const menuList: Array<menuListTypo> = [
     popular: false,
   },
   {
-    id: 12,
+    id: 7,
     name: "Sezar Salata",
     type: "Salatalar",
     img: "./src/asset/image/menu/somon.png",
@@ -73,7 +73,7 @@ export const menuList: Array<menuListTypo> = [
     popular: false,
   },
   {
-    id: 12,
+    id: 8,
     name: "Güllaç",
     type: "Tatlı",
     img: "./src/asset/image/menu/somon.png",

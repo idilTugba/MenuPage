@@ -1,30 +1,24 @@
 import React from "react";
-import { useMenuList } from "../../context/MenuContext";
-
-interface Tab {
-  id: string;
-  label: string;
-}
 
 interface ScrollableTabsType {
-  tabs: Tab[];
+  tabs: string[];
   activeTab: string;
   onClickEvent: (tabId: string) => void;
 }
 
-const ScrollableNavbar: React.FC<ScrollableTabsType> = (el) => {
-  const { tabs, activeTab, onClickEvent } = el;
-  const menuList = useMenuList();
+const ScrollableNavbar: React.FC<ScrollableTabsType> = (props) => {
+  const { tabs, activeTab, onClickEvent } = props;
+
   return (
     <ul>
       {tabs.map((tab) => {
         return (
           <li
-            className={activeTab === tab.id ? "active" : ""}
-            key={tab.id}
-            onClick={() => onClickEvent(tab.id)}
+            className={activeTab === tab ? "active" : ""}
+            key={tab}
+            onClick={() => onClickEvent(tab)}
           >
-            {tab.label}
+            {tab}
           </li>
         );
       })}
