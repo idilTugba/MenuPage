@@ -10,6 +10,7 @@ interface MenuContextType {
   foodTypeList: string[];
   typeOfFoodMap: Map<string, Array<menuListTypo> | null>;
   cheapestFoods: menuListTypo[];
+  fullMenuInclude: menuListTypo[];
 }
 
 const defaultMenuContext: MenuContextType = {
@@ -17,6 +18,7 @@ const defaultMenuContext: MenuContextType = {
   foodTypeList: [],
   typeOfFoodMap: new Map(),
   cheapestFoods: [],
+  fullMenuInclude: [],
 };
 
 const MenuContext = createContext<MenuContextType>(defaultMenuContext);
@@ -25,10 +27,16 @@ const MenuProvider = ({ children }: ThemeProviderProps) => {
   //food type
   let menuTypeSet: Set<string> = new Set();
   menuList.map((item) => menuTypeSet.add(item.type));
-  const foodTypeList: Array<string> = ["Popüler", ...menuTypeSet]; // The Type of List
+  const foodTypeList: Array<string> = ["Popüler", "Menüler", ...menuTypeSet]; // The Type of List
 
   //Populer foods
   const populerFoods = menuList.filter((item) => item.popular === true);
+
+  //cheapest foods
+  const cheapestFoods = menuList.filter((item) => item.price <= 100);
+
+  //menu set
+  const fullMenuInclude = menuList.filter((item) => item.menu === true);
 
   //categories of food type
   let typeOfFoodMap: Map<string, Array<menuListTypo> | null> = new Map(); //categories of food type
@@ -38,15 +46,14 @@ const MenuProvider = ({ children }: ThemeProviderProps) => {
     typeOfFoodMap.set(item, newListArray);
   });
   typeOfFoodMap.set("Popüler", populerFoods);
-
-  //cheapest foods
-  const cheapestFoods = menuList.filter((item) => item.price <= 100);
+  typeOfFoodMap.set("Menüler", fullMenuInclude);
 
   const values = {
     menuList,
     foodTypeList,
     typeOfFoodMap,
     cheapestFoods,
+    fullMenuInclude,
   };
 
   return <MenuContext.Provider value={values}>{children}</MenuContext.Provider>;

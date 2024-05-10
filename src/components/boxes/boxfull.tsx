@@ -1,20 +1,20 @@
 import React from "react";
 import image from "./../../asset/image/menu/somon.png";
+import { menuListTypo } from "../../data/menu";
 
-const BoxFull = () => {
+const BoxFull = ({ data }: { data: menuListTypo }) => {
+  const { name, img, price, description } = data;
   return (
     <>
-      <div className="block">
-        <h2>Cazip Fiyatlar</h2>
-        <p>Cazip Fiyatlı ve Birbirinden lezzetli menüler.</p>
-      </div>
       <div className="box__full">
         <img src={image} alt="" />
         <div className="box__full--content">
-          <div className="title">DEneme</div>
-          <div className="describtion">Lorem isoernff</div>
           <div>
-            <span className="price">99 TL</span>
+            <h4>{name}</h4>
+            <p>{description}</p>
+          </div>
+          <div className="box__full--content--bottom">
+            <span className="price">₺ {price}</span>
             <button className="addBasket">+</button>
           </div>
         </div>

@@ -3,6 +3,15 @@
   src:
     url("./../fonts/HKNova-Medium.woff2") format("woff2"),
     url("./../fonts/HKNova-Medium.woff") format("woff");
+  font-weight: 700;
+  font-style: bold;
+  font-display: swap;
+}
+@font-face {
+  font-family: "HK Nova";
+  src:
+    url("./../fonts/HKNova-Regular.woff2") format("woff2"),
+    url("./../fonts/HKNova-Regular.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;

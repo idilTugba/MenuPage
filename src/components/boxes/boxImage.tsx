@@ -8,7 +8,7 @@ export default function ImageBox({ data }: { data: menuListTypo }) {
     <div className="box__image">
       <img src={image} alt="" />
       <div className="box__image__content">
-        <span>₺ {price}</span>
+        <span className="price">₺ {price}</span>
         <p>{name}</p>
       </div>
     </div>

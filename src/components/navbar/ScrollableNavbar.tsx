@@ -10,7 +10,7 @@ const ScrollableNavbar: React.FC<ScrollableTabsType> = (props) => {
   const { tabs, activeTab, onClickEvent } = props;
 
   return (
-    <ul>
+    <ul className="scroll-container">
       {tabs.map((tab) => {
         return (
           <li
