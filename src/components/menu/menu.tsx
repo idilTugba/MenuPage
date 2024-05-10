@@ -6,7 +6,10 @@ import { useMenuList } from "../../context/MenuContext";
 import ScrollableNavbar from "../navbar/ScrollableNavbar";
 
 export default function Menu() {
-  const [openTab, setOpenTab] = useState<string>("Popüler");
+  const [openTab, setOpenTab] = useState<string[]>([
+    "Popüler",
+    "Restoranın en çok tercih edilen ürünleri",
+  ]);
 
   const { typeOfFoodMap, foodTypeList } = useMenuList();
 
@@ -15,13 +18,15 @@ export default function Menu() {
       <div className={scrollableTabs}>
         <ScrollableNavbar
           tabs={foodTypeList}
-          activeTab={openTab}
+          activeTab={openTab[0]}
           onClickEvent={setOpenTab}
         />
       </div>
 
-      <div>
-        {typeOfFoodMap.get(openTab)?.map((item) => {
+      <h2>{openTab[0]}</h2>
+      <p>{openTab[1]}</p>
+      <div className="block">
+        {typeOfFoodMap.get(openTab[0])?.map((item) => {
           return <ImageBox key={item.id} data={item} />;
         })}
       </div>

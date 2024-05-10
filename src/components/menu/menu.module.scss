@@ -1,6 +1,7 @@
 .scrollableTabs {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
   ul {
     display: flex;
     overflow-x: auto; /* Yatay kaydırma */
@@ -11,10 +12,10 @@
     }
     li {
       float: left;
-      margin-left: 20px;
+      margin-right: 20px;
       color: #7d7d82;
       font-weight: bold;
-      font-size: 24px;
+      font-size: 18px;
       display: flex;
       flex: 0 0 auto;
       padding-top: 10px;

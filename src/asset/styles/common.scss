@@ -1,10 +1,12 @@
 body,
-html {
+html,
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "HK Nova";
-  font-size: 16px;
+  font-size: 13px;
+  line-height: 1;
 }
 
 ul,
@@ -13,8 +15,15 @@ ol {
   padding: 0;
 }
 
-p,
-a {
-  padding: 0;
-  margin: 0;
+h2 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.block {
+  display: block;
+}
+
+.container {
+  padding: 20px 30px;
 }
