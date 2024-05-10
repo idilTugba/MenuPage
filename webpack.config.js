@@ -37,73 +37,73 @@ module.exports = {
             loader: 'babel-loader'
         }
       },
+      // {
+      //   test: /\.scss$/,
+      //   use: [
+      //     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         modules: {
+      //           auto: true,
+      //           localIdentName: '[name]__[local]___[hash:base64:5]',
+      //           exportLocalsConvention: 'camelCaseOnly',
+      //         },
+      //       },
+      //     },
+      //     'sass-loader',
+      //   ],
+      // },
       {
-        test: /\.s?css$/,
+        test: /\.scss$/i,
+        exclude: /\.module\.scss$/i,
         use: [
-          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: "style-loader",
+          },
+          {
+            loader: "css-loader",
             options: {
+              importLoaders: 1,
               modules: {
-                auto: true,
+                mode: "icss",
                 localIdentName: '[name]__[local]___[hash:base64:5]',
-                exportLocalsConvention: 'camelCaseOnly',
+                exportLocalsConvention: 'camelCaseOnly'
               },
             },
           },
-          'sass-loader',
+          {
+            loader: "sass-loader",
+          },
         ],
       },
-      // {
-      //   test: /\.scss$/i,
-      //   exclude: /\.module\.scss$/i,
-      //   use: [
-      //     {
-      //       loader: "style-loader",
-      //     },
-      //     {
-      //       loader: "css-loader",
-      //       options: {
-      //         importLoaders: 1,
-      //         modules: {
-      //           mode: "icss",
-      //           localIdentName: '[name]__[local]___[hash:base64:5]',
-      //           exportLocalsConvention: 'camelCaseOnly'
-      //         },
-      //       },
-      //     },
-      //     {
-      //       loader: "sass-loader",
-      //     },
-      //   ],
-      // },
-      // // --------
-      // // SCSS MODULES
-      // {
-      //   test: /\.module\.scss$/i,
-      //   use: [
-      //     {
-      //       loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-      //     },
-      //     {
-      //       loader: "css-loader",
-      //       options: {
-      //         importLoaders: 1,
-      //         modules: {
-      //           mode: "local",
-      //           localIdentName: '[name]__[local]___[hash:base64:5]',
-      //           exportLocalsConvention: 'camelCaseOnly'
-      //         },
-      //       },
-      //     },
-      //     {
-      //       loader: "sass-loader",
-      //     },
-      //   ],
-      // },
+      // --------
+      // SCSS MODULES
+      {
+        test: /\.module\.scss$/i,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 1,
+              modules: {
+                mode: "local",
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+                exportLocalsConvention: 'camelCaseOnly'
+              },
+            },
+          },
+          {
+            loader: "sass-loader",
+          },
+        ],
+      },
       {
         test: /\.(css)$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ['style-loader', 'css-loader']
       },
       // {
       //   test: /\.module\.s?css$/,
@@ -143,52 +143,52 @@ module.exports = {
           },
         },
       }), // Terser Plugin
-      new ImageMinimizerPlugin({
-        minimizer: {
-          implementation: ImageMinimizerPlugin.imageminMinify,
-          options: {
-            plugins: [
+      // new ImageMinimizerPlugin({
+      //   minimizer: {
+      //     implementation: ImageMinimizerPlugin.imageminMinify,
+      //     options: {
+      //       plugins: [
 
-              //lossly
-              ['imagemin-gifsicle', { interlaced: true, optimizationLevel: 3 }],
-              ['imagemin-mozjpeg', { progressive: true, quality: 75 }], // Kalite değerini ayarlayabilirsiniz
-              ['imagemin-pngquant', { quality: [0.6, 0.8] }], // Kalite aralığını ayarlayabilirsiniz
-              // ['imagemin-svgo'],
-              //lossly
+      //         //lossly
+      //         ['imagemin-gifsicle', { interlaced: true, optimizationLevel: 3 }],
+      //         ['imagemin-mozjpeg', { progressive: true, quality: 75 }], // Kalite değerini ayarlayabilirsiniz
+      //         ['imagemin-pngquant', { quality: [0.6, 0.8] }], // Kalite aralığını ayarlayabilirsiniz
+      //         // ['imagemin-svgo'],
+      //         //lossly
 
-              // Lossless optimization with custom option
-              // ["gifsicle", { interlaced: true }],
-              // ["jpegtran", { progressive: true }],
-              // ["optipng", { optimizationLevel: 7 }],
-              // // Svgo configuration here https://github.com/svg/svgo#configuration
-              // [
-              //   "svgo",
-              //   {
-              //     plugins: [
-              //       {
-              //         name: "preset-default",
-              //         params: {
-              //           overrides: {
-              //             removeViewBox: false,
-              //             addAttributesToSVGElement: {
-              //               params: {
-              //                 attributes: [
-              //                   { xmlns: "http://www.w3.org/2000/svg" },
-              //                 ],
-              //               },
-              //             },
-              //           },
-              //         },
-              //       },
-              //     ],
-              //   },
-              // ],
-              // Lossless optimization with custom option
+      //         // Lossless optimization with custom option
+      //         // ["gifsicle", { interlaced: true }],
+      //         // ["jpegtran", { progressive: true }],
+      //         // ["optipng", { optimizationLevel: 7 }],
+      //         // // Svgo configuration here https://github.com/svg/svgo#configuration
+      //         // [
+      //         //   "svgo",
+      //         //   {
+      //         //     plugins: [
+      //         //       {
+      //         //         name: "preset-default",
+      //         //         params: {
+      //         //           overrides: {
+      //         //             removeViewBox: false,
+      //         //             addAttributesToSVGElement: {
+      //         //               params: {
+      //         //                 attributes: [
+      //         //                   { xmlns: "http://www.w3.org/2000/svg" },
+      //         //                 ],
+      //         //               },
+      //         //             },
+      //         //           },
+      //         //         },
+      //         //       },
+      //         //     ],
+      //         //   },
+      //         // ],
+      //         // Lossless optimization with custom option
               
-            ], 
-          },
-        },
-      }), //Image minimizer
+      //       ], 
+      //     },
+      //   },
+      // }), //Image minimizer
     ],
   },
   plugins: [

@@ -80,4 +80,8 @@ span {
 
 .container {
   padding: 20px 30px;
+  overflow: hidden;
+  .swiper {
+    overflow: visible !important;
+  }
 }

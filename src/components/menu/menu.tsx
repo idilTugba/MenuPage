@@ -6,6 +6,11 @@ import { useMenuList } from "../../context/MenuContext";
 import ScrollableNavbar from "../navbar/ScrollableNavbar";
 import BoxFull from "../boxes/boxfull";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+
 export default function Menu() {
   const [openTab, setOpenTab] = useState<string[]>([
     "Popüler",
@@ -27,9 +32,29 @@ export default function Menu() {
       <h2>{openTab[0]}</h2>
       <p>{openTab[1]}</p>
       <div className="block">
-        {typeOfFoodMap.get(openTab[0])?.map((item) => {
-          return <ImageBox key={item.id} data={item} />;
-        })}
+        <Swiper
+          breakpoints={{
+            360: {
+              slidesPerView: 2,
+            },
+            568: {
+              slidesPerView: 3,
+            },
+            768: {
+              slidesPerView: 4,
+            },
+          }}
+          centeredSlides={false}
+          spaceBetween={0}
+        >
+          {typeOfFoodMap.get(openTab[0])?.map((item) => {
+            return (
+              <SwiperSlide key={item.id}>
+                <ImageBox data={item} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </div>
 
       <div className="block">

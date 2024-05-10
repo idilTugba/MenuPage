@@ -48,7 +48,7 @@ export const menuList: Array<menuListTypo> = [
     description: "Lorem ipsum ...",
     price: 89,
     popular: false,
-    menu: false,
+    menu: true,
   },
   {
     id: 5,
