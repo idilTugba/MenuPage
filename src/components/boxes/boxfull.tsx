@@ -1,9 +1,15 @@
 import React from "react";
 import image from "./../../asset/image/menu/somon.png";
 import { menuListTypo } from "../../data/menu";
+import { useBasket } from "../../context/BasketContex";
 
 const BoxFull = ({ ItemData }: { ItemData: menuListTypo }) => {
   const { name, img, price, description } = ItemData;
+  const { addBasket } = useBasket();
+  const handleBasket = () => {
+    console.log(ItemData);
+    addBasket(ItemData);
+  };
   return (
     <>
       <div className="box__full">
@@ -15,7 +21,9 @@ const BoxFull = ({ ItemData }: { ItemData: menuListTypo }) => {
           </div>
           <div className="box__full--content--bottom">
             <span className="price">₺ {price}</span>
-            <button className="addBasket">+</button>
+            <button onClick={handleBasket} className="addBasket">
+              +
+            </button>
           </div>
         </div>
       </div>
