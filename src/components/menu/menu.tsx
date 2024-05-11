@@ -10,6 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
+import InfiniteScroll from "../infinitescroll/Index";
 
 export default function Menu() {
   const [openTab, setOpenTab] = useState<string[]>([
@@ -62,9 +63,9 @@ export default function Menu() {
         <p>Cazip Fiyatlı ve Birbirinden lezzetli menüler.</p>
       </div>
 
-      {cheapestFoods.map((item) => {
-        return <BoxFull key={item.id} data={item} />;
-      })}
+      <InfiniteScroll data={cheapestFoods}>
+        {(ItemData) => <BoxFull ItemData={ItemData} />}
+      </InfiniteScroll>
     </>
   );
 }

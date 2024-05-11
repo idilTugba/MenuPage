@@ -2,8 +2,8 @@ import React from "react";
 import image from "./../../asset/image/menu/somon.png";
 import { menuListTypo } from "../../data/menu";
 
-const BoxFull = ({ data }: { data: menuListTypo }) => {
-  const { name, img, price, description } = data;
+const BoxFull = ({ ItemData }: { ItemData: menuListTypo }) => {
+  const { name, img, price, description } = ItemData;
   return (
     <>
       <div className="box__full">
