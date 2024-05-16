@@ -1,5 +1,13 @@
-import React, { ReactNode, useState, useEffect } from "react";
-import { menuListTypo } from "./../../data/menu";
+import React, {
+  ReactNode,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
+import { menuListTypo } from "../../data/menu";
+import useThrottle from "../../hooks/Throttle";
+import useDebounce from "../../hooks/Debounce";
 
 interface InfiniteScrollTypo {
   data: menuListTypo[];
@@ -7,10 +15,8 @@ interface InfiniteScrollTypo {
 }
 
 const InfiniteScroll: React.FC<InfiniteScrollTypo> = ({ children, data }) => {
-  const [itemsToShow, setItemsToShow] = useState<menuListTypo[] | []>(
-    data.slice(0, 4)
-  );
-  const [lastIndex, setLastIndex] = useState<number>(4);
+  const [itemsToShow, setItemsToShow] = useState<menuListTypo[] | []>([]);
+  const [lastIndex, setLastIndex] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
 
   const loadLastItems = () => {
@@ -18,23 +24,34 @@ const InfiniteScroll: React.FC<InfiniteScrollTypo> = ({ children, data }) => {
     setTimeout(() => {
       const newIndex = lastIndex + 4;
       const newContent = data.slice(lastIndex, newIndex);
-      setItemsToShow((itemsToShow) => [...itemsToShow, ...newContent]);
+      setItemsToShow((prevItems) => [...prevItems, ...newContent]);
       setLastIndex(newIndex);
       setLoading(false);
     }, 1200);
   };
 
-  const handleScroll = () => {
-    if (lastIndex >= data.length || loading) return;
-    console.log("handlescroll", lastIndex, itemsToShow);
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight)
-      loadLastItems();
-  };
+  const deboundeLoadItems = useDebounce(loadLastItems, 200);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+    deboundeLoadItems();
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    console.log("geldik");
+    if (lastIndex >= data.length || loading) return;
+    console.log("handlescroll", lastIndex, itemsToShow);
+
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight)
+      loadLastItems();
+  }, [lastIndex, loading, data.length, itemsToShow]);
+
+  // const throttleHandleScroll = useThrottle(handleScroll, 2000);
+  const debounceHandleScroll = useDebounce(handleScroll, 200);
+
+  useEffect(() => {
+    window.addEventListener("scroll", debounceHandleScroll);
+    return () => window.removeEventListener("scroll", debounceHandleScroll);
+  }, [debounceHandleScroll]);
 
   return (
     <div>

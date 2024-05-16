@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import InfiniteScroll from "../infinitescroll/Index";
+import InfiniteScroll from "../infinitescroll/InfiniteScroll";
 import Basket from "../basket/Basket";
 
 export default function Menu() {
