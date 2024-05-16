@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useRef,
   useCallback,
+  useMemo,
 } from "react";
 import { menuListTypo } from "../../data/menu";
 import useThrottle from "../../hooks/Throttle";
@@ -19,7 +20,7 @@ const InfiniteScroll: React.FC<InfiniteScrollTypo> = ({ children, data }) => {
   const [lastIndex, setLastIndex] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const loadLastItems = () => {
+  const loadLastItems = useCallback(() => {
     setLoading(true);
     setTimeout(() => {
       const newIndex = lastIndex + 4;
@@ -28,7 +29,7 @@ const InfiniteScroll: React.FC<InfiniteScrollTypo> = ({ children, data }) => {
       setLastIndex(newIndex);
       setLoading(false);
     }, 1200);
-  };
+  }, [lastIndex, itemsToShow]);
 
   const deboundeLoadItems = useDebounce(loadLastItems, 200);
 
@@ -37,7 +38,6 @@ const InfiniteScroll: React.FC<InfiniteScrollTypo> = ({ children, data }) => {
   }, []);
 
   const handleScroll = useCallback(() => {
-    console.log("geldik");
     if (lastIndex >= data.length || loading) return;
     console.log("handlescroll", lastIndex, itemsToShow);
 
@@ -53,9 +53,11 @@ const InfiniteScroll: React.FC<InfiniteScrollTypo> = ({ children, data }) => {
     return () => window.removeEventListener("scroll", debounceHandleScroll);
   }, [debounceHandleScroll]);
 
+  const memoziedItemToShow = useMemo(() => itemsToShow, [itemsToShow]);
+
   return (
     <div>
-      {itemsToShow.map((item) => (
+      {memoziedItemToShow.map((item) => (
         <React.Fragment key={item.id}>{children(item)}</React.Fragment>
       ))}
       {loading && (
@@ -75,4 +77,4 @@ const InfiniteScroll: React.FC<InfiniteScrollTypo> = ({ children, data }) => {
   );
 };
 
-export default InfiniteScroll;
+export default React.memo(InfiniteScroll);

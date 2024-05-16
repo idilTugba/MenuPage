@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import { scrollableTabs } from "./menu.module.scss";
 import ImageBox from "../boxes/boxImage";
@@ -21,11 +21,15 @@ export default function Menu() {
 
   const { typeOfFoodMap, foodTypeList, cheapestFoods } = useMenuList();
 
+  const memoTypeOfFoodMap = useMemo(() => typeOfFoodMap, [typeOfFoodMap]);
+  const memoFoodTypeList = useMemo(() => foodTypeList, [foodTypeList]);
+  const memoCheapestFoods = useMemo(() => cheapestFoods, [cheapestFoods]);
+
   return (
     <>
       <div className={scrollableTabs}>
         <ScrollableNavbar
-          tabs={foodTypeList}
+          tabs={memoFoodTypeList}
           activeTab={openTab[0]}
           onClickEvent={setOpenTab}
         />
@@ -49,7 +53,7 @@ export default function Menu() {
           centeredSlides={false}
           spaceBetween={0}
         >
-          {typeOfFoodMap.get(openTab[0])?.map((item) => {
+          {memoTypeOfFoodMap.get(openTab[0])?.map((item) => {
             return (
               <SwiperSlide key={item.id}>
                 <ImageBox data={item} />
@@ -64,7 +68,7 @@ export default function Menu() {
         <p>Cazip Fiyatlı ve Birbirinden lezzetli menüler.</p>
       </div>
 
-      <InfiniteScroll data={cheapestFoods}>
+      <InfiniteScroll data={memoCheapestFoods}>
         {(ItemData) => <BoxFull ItemData={ItemData} />}
       </InfiniteScroll>
 

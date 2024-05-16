@@ -6,7 +6,7 @@ interface ScrollableTabsType {
   onClickEvent: (tabId: string[]) => void;
 }
 
-const ScrollableNavbar: React.FC<ScrollableTabsType> = (props) => {
+const ScrollableNavbar: React.FC<ScrollableTabsType> = React.memo((props) => {
   const { tabs, activeTab, onClickEvent } = props;
 
   return (
@@ -24,6 +24,6 @@ const ScrollableNavbar: React.FC<ScrollableTabsType> = (props) => {
       })}
     </ul>
   );
-};
+});
 
 export default ScrollableNavbar;

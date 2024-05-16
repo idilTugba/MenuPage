@@ -1,10 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 
-interface useThrottleTypo<T> {
-  value: T;
-  limit: number;
-}
-
 function useThrottle<T>(value: T, limit: number): T {
   const [throttledValue, setThrottledValue] = useState(value);
   const lastRan = useRef(Date.now());

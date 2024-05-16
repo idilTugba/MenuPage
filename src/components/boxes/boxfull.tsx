@@ -3,7 +3,7 @@ import image from "./../../asset/image/menu/somon.png";
 import { menuListTypo } from "../../data/menu";
 import { useBasket } from "../../context/BasketContex";
 
-const BoxFull = ({ ItemData }: { ItemData: menuListTypo }) => {
+const BoxFull = React.memo(({ ItemData }: { ItemData: menuListTypo }) => {
   const { name, img, price, description } = ItemData;
   const { addBasket } = useBasket();
   const handleBasket = () => {
@@ -29,6 +29,6 @@ const BoxFull = ({ ItemData }: { ItemData: menuListTypo }) => {
       </div>
     </>
   );
-};
+});
 
 export default BoxFull;

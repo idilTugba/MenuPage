@@ -2,7 +2,7 @@ import React from "react";
 import { menuListTypo } from "../../data/menu";
 import image from "./../../asset/image/menu/somon.png";
 
-export default function ImageBox({ data }: { data: menuListTypo }) {
+function ImageBox({ data }: { data: menuListTypo }) {
   const { img, price, name } = data;
   return (
     <div className="box__image">
@@ -14,3 +14,5 @@ export default function ImageBox({ data }: { data: menuListTypo }) {
     </div>
   );
 }
+
+export default React.memo(ImageBox);
