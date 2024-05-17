@@ -5,8 +5,10 @@ import { header } from "./header.module.scss";
 const Header = () => {
   return (
     <header className={header}>
-      <div>. </div>
-      <SvgLogo />
+      <div className="container">
+        <div>. </div>
+        <SvgLogo />
+      </div>
     </header>
   );
 };

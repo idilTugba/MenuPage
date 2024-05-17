@@ -1,12 +1,14 @@
 .header {
   background-color: #0e968b;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding-left: 20px;
   padding-right: 20px;
   height: 77px;
   color: white;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   svg {
     // width: 200px;
     // height: auto;

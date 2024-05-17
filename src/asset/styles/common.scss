@@ -85,3 +85,27 @@ span {
     overflow: visible !important;
   }
 }
+
+@media (min-width: 768px) {
+  h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  h4 {
+    margin-bottom: 15px;
+    font-size: 15px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    padding: 20px 30px;
+    width: 960px;
+    margin: 0 auto;
+  }
+}
+
+.mb {
+  &-20 {
+    margin-bottom: 20px;
+  }
+}

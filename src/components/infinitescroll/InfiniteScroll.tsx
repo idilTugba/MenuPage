@@ -57,9 +57,11 @@ const InfiniteScroll: React.FC<InfiniteScrollTypo> = ({ children, data }) => {
 
   return (
     <div>
-      {memoziedItemToShow.map((item) => (
-        <React.Fragment key={item.id}>{children(item)}</React.Fragment>
-      ))}
+      <div className="box__grid-area">
+        {memoziedItemToShow.map((item) => (
+          <React.Fragment key={item.id}>{children(item)}</React.Fragment>
+        ))}
+      </div>
       {loading && (
         <div
           style={{

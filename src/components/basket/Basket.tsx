@@ -3,6 +3,7 @@ import { useBasket } from "../../context/BasketContex";
 
 const Basket = () => {
   const { totalBasket } = useBasket();
+  console.log(totalBasket);
   return (
     <>
       <div>

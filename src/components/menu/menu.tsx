@@ -37,13 +37,13 @@ export default function Menu() {
 
       <h2>{openTab[0]}</h2>
       <p>{openTab[1]}</p>
-      <div className="block">
+      <div className="block mb-20">
         <Swiper
           breakpoints={{
             360: {
               slidesPerView: 2,
             },
-            568: {
+            600: {
               slidesPerView: 3,
             },
             768: {
