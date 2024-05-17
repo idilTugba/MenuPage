@@ -65,10 +65,13 @@ const InfiniteScroll: React.FC<InfiniteScrollTypo> = ({ children, data }) => {
       {loading && (
         <div
           style={{
-            backgroundColor: "#0e968b",
+            backgroundColor: "#ffdd99",
             fontWeight: 500,
-            color: "white",
+            color: "black",
+            fontStyle: "bold",
             fontSize: "18px",
+            marginTop: "20px",
+            marginBottom: "20px",
             padding: "20px",
           }}
         >

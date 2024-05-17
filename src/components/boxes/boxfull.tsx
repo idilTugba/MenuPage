@@ -1,7 +1,8 @@
-import React from "react";
-import image from "./../../asset/image/menu/somon.png";
+import React, { useEffect, useState } from "react";
 import { menuListTypo } from "../../data/menu";
 import { useBasket } from "../../context/BasketContex";
+import { loadImage } from "../../utils/loaderImg";
+import notFound from "../../asset/image/notFound.png";
 
 const BoxFull = React.memo(({ ItemData }: { ItemData: menuListTypo }) => {
   const { name, img, price, description } = ItemData;
@@ -10,10 +11,26 @@ const BoxFull = React.memo(({ ItemData }: { ItemData: menuListTypo }) => {
     console.log(ItemData);
     addBasket(ItemData);
   };
+
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchImage = async () => {
+      const src = await loadImage(img);
+      setImageSrc(src);
+    };
+
+    fetchImage();
+  }, [img]);
+
   return (
     <>
       <div className="box__full">
-        <img src={image} alt="" />
+        <img
+          className={`${imageSrc ? "" : "notFound"}`}
+          src={imageSrc ? imageSrc : notFound}
+          alt={name}
+        />
         <div className="box__full--content">
           <div>
             <h4>{name}</h4>
