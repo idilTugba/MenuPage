@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../components/header/Header";
-import Menu from "../components/menu/menu";
+import Menu from "./menu/menu";
 
 export default function Home() {
   return (

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+
 import { menuListTypo } from "../../data/menu";
+
 import { useBasket } from "../../context/BasketContex";
 import { loadImage } from "../../utils/loaderImg";
 import notFound from "../../asset/image/notFound.png";
+import { boxFull } from "./boxes.module.scss";
 
 const BoxFull = React.memo(({ ItemData }: { ItemData: menuListTypo }) => {
   const { name, img, price, description } = ItemData;
   const { addBasket } = useBasket();
   const handleBasket = () => {
-    console.log(ItemData);
     addBasket(ItemData);
   };
 
@@ -25,7 +27,7 @@ const BoxFull = React.memo(({ ItemData }: { ItemData: menuListTypo }) => {
 
   return (
     <>
-      <div className="box__full">
+      <div className={boxFull}>
         <img
           className={`${imageSrc ? "" : "notFound"}`}
           src={imageSrc ? imageSrc : notFound}

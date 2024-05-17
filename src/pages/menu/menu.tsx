@@ -1,17 +1,17 @@
 import React, { useMemo, useState } from "react";
 
 import { scrollableTabs } from "./menu.module.scss";
-import ImageBox from "../boxes/boxImage";
+import ImageBox from "../../components/boxes/boxImage";
 import { useMenuList } from "../../context/MenuContext";
-import ScrollableNavbar from "../navbar/ScrollableNavbar";
-import BoxFull from "../boxes/boxfull";
+import ScrollableNavbar from "../../components/navbar/ScrollableNavbar";
+import BoxFull from "../../components/boxes/boxfull";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import InfiniteScroll from "../infinitescroll/InfiniteScroll";
-import Basket from "../basket/Basket";
+import InfiniteScroll from "../../components/infinitescroll/InfiniteScroll";
+import Basket from "../../components/basket/Basket";
 
 export default function Menu() {
   const [openTab, setOpenTab] = useState<string[]>([

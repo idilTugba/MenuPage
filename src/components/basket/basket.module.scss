@@ -1,0 +1,29 @@
+.basket {
+  &__sticker {
+    display: flex;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    background-color: white;
+    align-items: center;
+    justify-content: space-around;
+    div {
+      span {
+        display: block;
+        &:first-child {
+          font-size: 13px;
+          margin-bottom: 10px;
+        }
+        &:last-child {
+          font-size: 15px;
+          font-weight: bold;
+        }
+      }
+    }
+    // button {
+    // }
+  }
+}

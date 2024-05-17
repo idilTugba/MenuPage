@@ -4,13 +4,16 @@ import { createRoot } from "react-dom/client";
 import "./asset/styles/app.scss";
 import Home from "./pages/Home";
 import { MenuProvider } from "./context/MenuContext";
+import { BasketProvider } from "./context/BasketContex";
 
 function App() {
   return (
     <>
-      <MenuProvider>
-        <Home />
-      </MenuProvider>
+      <BasketProvider>
+        <MenuProvider>
+          <Home />
+        </MenuProvider>
+      </BasketProvider>
     </>
   );
 }

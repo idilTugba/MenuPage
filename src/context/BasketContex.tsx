@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { menuListTypo } from "../data/menu";
 
 interface ProviderTypo {
@@ -21,15 +21,17 @@ const BasketContext = createContext<BasketContextTypo>(defaultBasket);
 
 const BasketProvider = ({ children }: ProviderTypo) => {
   const [basketItems, setBasketItems] = useState<menuListTypo[]>([]);
+  const [totalBasket, setTotalBasket] = useState<number>(0);
 
   const addBasket = (item: menuListTypo) => {
     setBasketItems((prevItems) => [...prevItems, item]);
   };
 
-  const totalBasket = useMemo(() => {
-    return basketItems.reduce((accumulator, currentItem) => {
+  useEffect(() => {
+    const latesBasket = basketItems.reduce((accumulator, currentItem) => {
       return accumulator + (currentItem.price || 0);
     }, 0);
+    setTotalBasket(latesBasket);
   }, [basketItems]);
 
   const values = {

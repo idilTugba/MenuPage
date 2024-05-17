@@ -3,7 +3,11 @@
     width: 155px;
     height: 206px;
     border-radius: 20px;
-    float: left;
+    display: inline-block;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
     img {
       position: absolute;
       z-index: -1;
@@ -19,29 +23,85 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      span {
-        width: 64px;
-        height: 24px;
-        display: flex;
+      span.price {
         margin-left: 50%;
-        justify-content: center;
-        align-items: center;
-        background-color: #ffdd99;
-        border-radius: 10px;
+        margin-top: 5px;
       }
       p {
         display: flex;
+        font-size: 11px;
         width: 100%;
         justify-content: center;
         align-items: center;
         color: #15151e;
         height: 34px;
-        font-size: 11px;
         line-height: 16px;
         background-color: white;
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
       }
     }
+  }
+  // &__full {
+  //   width: 100%;
+  //   height: 142px;
+  //   border-radius: 20px;
+  //   background-color: #f9f8f7;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-around;
+  //   img {
+  //     border-radius: 20px;
+  //     width: 82px;
+  //     height: 114px;
+  //   }
+  //   &--content {
+  //     min-width: 60%;
+  //     height: 80%;
+  //     justify-content: space-around;
+  //     display: flex;
+  //     flex-direction: column;
+  //     font-size: 13px;
+  //     p {
+  //       margin-bottom: 10px;
+  //     }
+  //     span {
+  //       font-size: 11px;
+  //     }
+  //     &--bottom {
+  //       display: flex;
+  //       flex-direction: row;
+  //       justify-content: space-between;
+  //       align-items: center;
+  //       button {
+  //         background-color: #f4364c;
+  //         width: 32px;
+  //         height: 32px;
+  //         border-radius: 20px;
+  //       }
+  //     }
+  //   }
+  // }
+}
+
+@media screen and (min-width: 768px) {
+  .box__grid-area {
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+  }
+}
+@media (min-width: 430px) and (max-width: 768px) {
+  .box__full {
+    height: 180px;
+  }
+  .box__full img {
+    width: 112px;
+    height: 155px;
+  }
+}
+@media (min-width: 430px) and (max-width: 992px) {
+  .box__image {
+    width: 180px;
+    height: 239px;
   }
 }
