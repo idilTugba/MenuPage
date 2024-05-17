@@ -14,10 +14,7 @@ import InfiniteScroll from "../../components/infinitescroll/InfiniteScroll";
 import Basket from "../../components/basket/Basket";
 
 export default function Menu() {
-  const [openTab, setOpenTab] = useState<string[]>([
-    "Popüler",
-    "Restoranın en çok tercih edilen ürünleri",
-  ]);
+  const [openTab, setOpenTab] = useState<string>("Popüler");
 
   const { typeOfFoodMap, foodTypeList, cheapestFoods } = useMenuList();
 
@@ -30,13 +27,17 @@ export default function Menu() {
       <div className={scrollableTabs}>
         <ScrollableNavbar
           tabs={memoFoodTypeList}
-          activeTab={openTab[0]}
+          activeTab={openTab}
           onClickEvent={setOpenTab}
         />
       </div>
 
-      <h2>{openTab[0]}</h2>
-      <p>{openTab[1]}</p>
+      <h2>{openTab}</h2>
+      <p>
+        {openTab === "Popüler"
+          ? "Restoranın en çok tercih edilen ürünleri"
+          : null}
+      </p>
       <div className="block mb-20">
         <Swiper
           breakpoints={{
@@ -53,7 +54,7 @@ export default function Menu() {
           centeredSlides={false}
           spaceBetween={0}
         >
-          {memoTypeOfFoodMap.get(openTab[0])?.map((item) => {
+          {memoTypeOfFoodMap.get(openTab)?.map((item) => {
             return (
               <SwiperSlide key={item.id}>
                 <ImageBox data={item} />

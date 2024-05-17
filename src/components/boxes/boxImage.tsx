@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { menuListTypo } from "../../data/menu";
 import { loadImage } from "../../utils/loaderImg";
 import notFound from "../../asset/image/notFound.png";
+import { boxImage, boxImageContent } from "./boxes.module.scss";
 
 function ImageBox({ data }: { data: menuListTypo }) {
   const { img, price, name } = data;
@@ -17,13 +18,13 @@ function ImageBox({ data }: { data: menuListTypo }) {
     fetchImage();
   }, [img]);
   return (
-    <div className="box__image">
+    <div className={boxImage}>
       <img
         className={`${imageSrc ? "" : "notFound"}`}
         src={imageSrc ? imageSrc : notFound}
         alt={name}
       />
-      <div className="box__image__content">
+      <div className={boxImageContent}>
         <span className="price">₺ {price}</span>
         <p>{name}</p>
       </div>

@@ -109,7 +109,7 @@ span {
   height: 100%;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   h2 {
     font-size: 24px;
     margin-bottom: 15px;
@@ -117,6 +117,10 @@ span {
   h4 {
     margin-bottom: 15px;
     font-size: 15px;
+  }
+  .grid-2col {
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
   }
 }
 @media (min-width: 992px) {

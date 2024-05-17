@@ -1,11 +1,11 @@
 import React from "react";
 import { ReactComponent as SvgLogo } from "./../../asset/image/menu.svg";
-import { header } from "./header.module.scss";
+import { header, container } from "./header.module.scss";
 
 const Header = () => {
   return (
     <header className={header}>
-      <div className="container">
+      <div className={`${container} container`}>
         <div>. </div>
         <SvgLogo />
       </div>

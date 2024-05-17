@@ -3,7 +3,7 @@ import React from "react";
 interface ScrollableTabsType {
   tabs: string[];
   activeTab: string;
-  onClickEvent: (tabId: string[]) => void;
+  onClickEvent: (tabId: string) => void;
 }
 
 const ScrollableNavbar: React.FC<ScrollableTabsType> = React.memo((props) => {
@@ -16,7 +16,7 @@ const ScrollableNavbar: React.FC<ScrollableTabsType> = React.memo((props) => {
           <li
             className={activeTab === tab ? "active" : ""}
             key={tab}
-            onClick={() => onClickEvent([tab])}
+            onClick={() => onClickEvent(tab)}
           >
             {tab}
           </li>
