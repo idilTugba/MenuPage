@@ -9,7 +9,7 @@ interface ButtonPrimaryProps {
 
 const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
   children,
-  className,
+  className = "",
   handleClick,
 }) => {
   return (

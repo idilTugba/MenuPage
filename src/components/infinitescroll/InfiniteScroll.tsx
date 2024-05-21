@@ -7,7 +7,7 @@ import React, {
   useMemo,
 } from "react";
 import { menuListTypo } from "../../data/menu";
-import useThrottle from "../../hooks/Throttle";
+import { throttle } from "lodash";
 import useDebounce from "../../hooks/Debounce";
 
 interface InfiniteScrollTypo {
@@ -20,16 +20,20 @@ const InfiniteScroll: React.FC<InfiniteScrollTypo> = ({ children, data }) => {
   const [lastIndex, setLastIndex] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const loadLastItems = useCallback(() => {
-    setLoading(true);
-    setTimeout(() => {
-      const newIndex = lastIndex + 4;
-      const newContent = data.slice(lastIndex, newIndex);
-      setItemsToShow((prevItems) => [...prevItems, ...newContent]);
-      setLastIndex(newIndex);
-      setLoading(false);
-    }, 1200);
-  }, [lastIndex, itemsToShow]);
+  const loadLastItems = throttle(
+    () => {
+      setLoading(true);
+      setTimeout(() => {
+        const newIndex = lastIndex + 4;
+        const newContent = data.slice(lastIndex, newIndex);
+        setItemsToShow((prevItems) => [...prevItems, ...newContent]);
+        setLastIndex(newIndex);
+        setLoading(false);
+      }, 1200);
+    },
+    2000,
+    { trailing: false }
+  );
 
   const deboundeLoadItems = useDebounce(loadLastItems, 200);
 
