@@ -166,7 +166,9 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({filename: `app.css`,}),
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      title: 'Menu page',
+      template: './src/index.html',
+      favicon: 'src/asset/image/favicon.ico' 
     }),
   ],
   devServer: {

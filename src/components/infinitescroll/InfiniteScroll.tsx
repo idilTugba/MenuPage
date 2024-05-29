@@ -2,12 +2,12 @@ import React, {
   ReactNode,
   useState,
   useEffect,
-  useRef,
   useCallback,
   useMemo,
 } from "react";
 import { menuListTypo } from "../../data/menu";
 import { throttle } from "lodash";
+import useThrottle from "../../hooks/Throttle";
 import useDebounce from "../../hooks/Debounce";
 
 interface InfiniteScrollTypo {
@@ -43,7 +43,6 @@ const InfiniteScroll: React.FC<InfiniteScrollTypo> = ({ children, data }) => {
 
   const handleScroll = useCallback(() => {
     if (lastIndex >= data.length || loading) return;
-    console.log("handlescroll", lastIndex, itemsToShow);
 
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight)
       loadLastItems();

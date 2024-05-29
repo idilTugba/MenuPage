@@ -5,7 +5,6 @@ import ButtonPrimary from "../button/ButtonPrimary";
 
 const Basket = () => {
   const { totalBasket, basketItems } = useBasket();
-  console.log(totalBasket);
   return (
     <>
       {basketItems.length === 0 ? null : (
